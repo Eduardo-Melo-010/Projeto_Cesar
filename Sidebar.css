@@ -1,0 +1,64 @@
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background-color: #fe6002;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+  
+  .logo-container {
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    width: 60%;
+    height: auto;
+  }
+  
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+    height: 800px;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .nav-link:hover {
+    background-color: white;
+    color: #f26522;
+  }
+  
+  .logout {
+    padding: 20px;
+  }
+  
+  .logout-link {
+    color: white;
+  }
+  .logout-link:hover {
+    background-color: white;
+    color: #f26522;
+  }
+  
+  .icon {
+    font-size: 16px;
+  }
+  
