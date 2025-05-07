@@ -3,10 +3,10 @@ import Sidebar from './Sidebar.jsx';
 import { useState } from 'react';
 
 function CadastroPaciente() {
-  const [mostrarLinguagens, setMostrarLinguagens] = useState(false);
+  const [mostrarCurso, setMostrarCurso] = useState(false);
 
-  const toggleLinguagens = () => {
-    setMostrarLinguagens(!mostrarLinguagens);
+  const toggleCurso = () => {
+    setMostrarCurso(!mostrarCurso);
   };
 
   return (
@@ -17,83 +17,82 @@ function CadastroPaciente() {
           <fieldset>
             <h3>Cadastro de Paciente</h3>
 
-            <label>Nome Completo <span className="obrigatorio">*</span>
+            <label><span className="negrito">Nome Completo</span><span className="obrigatorio">*</span>
               <input type="text" name="nome" placeholder="Insira o nome do paciente" required />
             </label>
 
-            <label>Data de Nascimento <span className="obrigatorio">*</span>
+            <label><span className="negrito">Matrícula ou CPF</span><span className="obrigatorio">*</span>
+            <input type="text" name="matricula_ou_CPF" placeholder="Insira a matrícula ou o CPF"/>
+            </label>
+
+            <label><span className="negrito">Data de Nascimento</span><span className="obrigatorio">*</span>
               <input type="date" name="data_nascimento" required />
             </label>
 
-            <label> Nome do Responsável <span className="obrigatorio">*</span>
-              <input type="text" name="sobrenome" placeholder="Nome do Responsável (caso seja menor de idade)" required />
+            <label><span className="negrito">Nome do Responsável </span><span className="obrigatorio">*</span>
+              <input type="text" name="NomeResponsavel" placeholder="Nome do Responsável (caso seja menor de idade)" required />
             </label>
 
-            <label>Telefone <span className="obrigatorio">*</span>
+            <label><span className="negrito">Telefone </span><span className="obrigatorio">*</span>
               <input type="tel" name="telefone" placeholder="(99)99999-9999" required />
             </label>
 
-            <label>E-mail <span className="obrigatorio">*</span>
+            <label><span className="negrito">E-mail</span><span className="obrigatorio">*</span>
               <input type="email" name="email" placeholder="Insira seu e-mail" required />
             </label>
-
-            <label>Mensagem <span className="obrigatorio">*</span>
-              <textarea name="mensagem" placeholder="Informe o que deseja." required></textarea>
-            </label>
-
-            <label>Língua
-              <select name="lingua">
-                <option>Português (pt-br)</option>
-                <option>Inglês (en)</option>
+            
+            <label><span className="negrito">Tipo de Vínculo</span><span className="obrigatorio">*</span>
+              <select name="TipoDeVinculo">
+                <option>Aluno</option>
+                <option>Profissinal do Cesar</option>
+                <option>Outros</option>
               </select>
+              <textarea name="mensagem" placeholder="Se a escolha for a opção outros, informe o tipo de vínculo." required></textarea>
             </label>
 
-            <label>Protótipo (Requisitos)
-              <input type="file" name="prototipo" />
-            </label>
+            <label><span className="negrito">Cursos</span></label>
+            <small><span className="obrigatorio" style={{ color: 'red' }}>(Caso seja aluno do Cesar, marcar uma das opções)*</span></small>
+            <br />
+            <br />
+            <button type="button" className="toggle-btn" onClick={toggleCurso}>Mostrar / Ocultar</button>
 
-            <label>As linguagens que você prefere?</label>
-            <button type="button" className="toggle-btn" onClick={toggleLinguagens}>Mostrar / Ocultar</button>
-
-            {mostrarLinguagens && (
-              <div className="toggle-content" id="linguagensDiv">
-                <select name="linguagens" multiple size="5">
-                  <option>Java</option>
-                  <option>C</option>
-                  <option>C++</option>
-                  <option>PHP</option>
-                  <option>Python</option>
-                  <option>JavaScript</option>
+            {mostrarCurso && (
+              <div className="toggle-content" id="cursoDiv">
+                <select name="curso" multiple size="5">
+                  <option>Análise e Desenvolvimento de Sistemas</option>
+                  <option>Design Gráfico</option>
+                  <option>Ciência da Computação</option>
+                  <option>Sistemas de Informação</option>
+                  <option>Tecnologia em Banco de Dados</option>
                 </select>
                 <br />
-                <small>(Para fazer várias escolhas, mantenha a tecla CTRL pressionada)</small>
               </div>
             )}
 
-            <label>Banco de Dados</label>
+            <label>
+              <p className="negrito">Possui alguma neurodivergência?</p>
+            </label>
             <div className="inline-radio">
-              <label><input type="radio" name="banco" value="MySQL" defaultChecked /> MySQL</label> |
-              <label><input type="radio" name="banco" value="Postgresql" /> Postgresql</label> |
-              <label><input type="radio" name="banco" value="MongoDB" /> MongoDB</label> |
-              <label><input type="radio" name="banco" value="NA" /> N/A</label> |
-              <label><input type="radio" name="banco" value="Outro" /> Outra</label>
+              <label><input type="radio" name="possui" value="Sim" defaultChecked /> Sim</label> 
+              <label><input type="radio" name="possui" value="Não" /> Não</label>
             </div>
 
             <div className="inline-radio">
-              <label>Turno para Reuniões <span className="obrigatorio">*</span></label> |
+              <label><span className="negrito">Turno das Sessões</span><span className="obrigatorio">*</span></label> |
               <label><input type="checkbox" name="turno" value="manha" /> Manhã</label> |
               <label><input type="checkbox" name="turno" value="tarde" /> Tarde</label> |
               <label><input type="checkbox" name="turno" value="noite" /> Noite</label>
             </div>
 
-            <label>Horário Sugerido
+            <label><span className="negrito">Horário de Atendimento</span>
               <input type="time" name="horario" />
+              <small><span className="negrito">(O horário está sujeito a alterações conforme disponibilidade do terapeuta e/ou do paciente)</span></small>
             </label>
 
             <br /><br />
             <button type="submit">Enviar</button>
             <button type="reset">Limpar</button>
-            <p><span className="obrigatorio">*</span> Campos Obrigatórios</p>
+            <p><span className="obrigatorio">*</span>Campos Obrigatórios</p>
           </fieldset>
         </form>
       </div>
